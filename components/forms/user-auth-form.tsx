@@ -78,7 +78,7 @@ export default function UserAuthForm() {
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
-            Exemplo Dashboard Peso Cubado
+            Exemplo Dashboard
           </span>
         </div>
       </div>

@@ -41,8 +41,7 @@ export default function AuthenticationPage() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              &ldquo;Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry.&rdquo;
+              &ldquo;Definir rotas baseada na api do google maps&rdquo;
             </p>
             <footer className="text-sm">Maps Dashboard</footer>
           </blockquote>
