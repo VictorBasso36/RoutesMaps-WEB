@@ -29,7 +29,7 @@ export default function MapsDashboard() {
   const fetchDataTable = async () => {
     try {
       setLoadingTable(true);
-      const response = await axios.get('http://localhost:5000/api/v1/maps/');
+      const response = await axios.get('https://routes-maps-api.vercel.app/api/v1/maps/');
       const data = response.data;
       setDataTable(data);
       setLoadingTable(false);
