@@ -12,6 +12,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useEffect, useState } from 'react';
+import { set } from 'date-fns';
+import MapsFormDashboard from './mapsInsert';
 
 interface MapsInterface {
   id: number;
@@ -24,6 +26,7 @@ interface MapsInterface {
 export default function MapsDashboard() {
   const [dataTable, setDataTable] = useState<MapsInterface[]>([]);
   const [mapUrl, setMapUrl] = useState('');
+  const [routeText, setRouteText] = useState('') 
   const [loadingTable, setLoadingTable] = useState(false);
 
   const fetchDataTable = async () => {
@@ -43,19 +46,24 @@ export default function MapsDashboard() {
     endPoint: MapsInterface['endPoint']
   ) => {
     setMapUrl('');
+    setRouteText('');
     if (!startPoint) return null;
     if (!endPoint) return null;
     const baseUrl = 'https://www.google.com/maps/embed/v1/directions';
+    //key protegiado pela dominio de produção.
     const apiKey = 'AIzaSyBY7RvKARXQeHEsqj4Jh0SRJfZmJ5N052A';
     const url = `${baseUrl}?key=${apiKey}&origin=${encodeURIComponent(
       startPoint
     )}&destination=${encodeURIComponent(endPoint)}`;
     setMapUrl(url);
+    setRouteText(`${startPoint} até ${endPoint}.`)
   };
 
   useEffect(() => {
     fetchDataTable();
   }, []);
+
+  console.log(mapUrl)
 
   return (
     <>
@@ -69,7 +77,7 @@ export default function MapsDashboard() {
             {/* maps here */}
             {mapUrl && (
               <>
-                Rota Selecionada:
+                Rota Selecionada: {routeText}
                 <iframe
                   src={mapUrl}
                   width="600"
@@ -82,16 +90,13 @@ export default function MapsDashboard() {
           </div>
           <div>
             <Table style={{ minWidth: '1100px' }}>
-              <TableCaption style={{ marginTop: '20px', marginBottom: '20px' }}>
-                Lista de suas rotas recentes.
-              </TableCaption>
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-[100px]">id</TableHead>
                   <TableHead className="w-[200px]">Nome do Cliente</TableHead>
                   <TableHead>Ponto de Partida</TableHead>
                   <TableHead>Ponto de Destino</TableHead>
-                  <TableHead>Data</TableHead>
+                  <TableHead className="w-[120px]">Data</TableHead>
                   <TableHead className="w-[110px]">Ações</TableHead>
                 </TableRow>
               </TableHeader>
@@ -127,7 +132,7 @@ export default function MapsDashboard() {
           </div>
         </TabsContent>
         <TabsContent value="NovaRota" className="space-y-4">
-          Nova rota
+          <MapsFormDashboard />
         </TabsContent>
       </Tabs>
     </>
