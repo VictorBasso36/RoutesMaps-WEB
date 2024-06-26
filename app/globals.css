@@ -84,7 +84,6 @@
   font-style: normal;
 }
 
-
 @layer utilities {
   .min-h-screen {
     min-height: 100vh; /* Fallback */
@@ -96,17 +95,12 @@
   }
 }
 
-
-
-
-.tableMain{
-  display: "flex";
+.tableMain {
+  display: 'flex';
 }
 
-@media screen and (max-width: 990px){
-  .tableMain{
-    display: none!important;
+@media screen and (max-width: 990px) {
+  .tableMain {
+    display: none !important;
   }
 }
-
-

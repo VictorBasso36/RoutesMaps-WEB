@@ -10,7 +10,6 @@ export type User = {
   status: string;
 };
 
-
 export const navItems: NavItem[] = [
   {
     title: 'Mapas',
